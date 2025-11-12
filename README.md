@@ -17,7 +17,7 @@ Each individual data has a shape of 70x721x1440, where 70 represents 70 atmosphe
 
 ## Inference
 
-Before performing inference for forecasting, you need to convert the input data into the required format according to the **Data Format** specification. Once the data format conversion is complete, you can directly run inference to generate a forecast for the next 10 days.
+Before performing inference for forecasting, you need to convert the input data into the required format according to the **Data Format** specification. Once the data format conversion is complete, you can directly run inference to generate a forecast for the next 10 days. Zenodo (https://zenodo.org/records/17585603) contains the FengYuan-Weather model weights, which are used for inference.
     
 If you want a 6-hourly forecast for the next 10 days, you can use the following command:
     
