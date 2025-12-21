@@ -4,8 +4,6 @@
 
 风源中期天气预报模型采用过去12小时的数据作为输入，预报未来10天逐6小时，空间分辨率0.25度的地面和高空气象要素，如下表所示。此库中包含了风源中期天气预报模型的推断代码、预训练模型权重等信息。
 
-<img src="imgs/var_list_zh.png" style="zoom:20%;" />
-
 
 ## 数据格式
 
@@ -66,3 +64,4 @@ python inference.py \
 - onnxruntime
 - xarray
 - netcdf4 or h5netcdf
+

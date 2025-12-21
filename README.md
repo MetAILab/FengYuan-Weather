@@ -2,7 +2,7 @@
     
 # FengYuan-Weather
 FengYuan-Weather model utilizes data from past 12-hour as input to forecast surface and upper-air meteorological variables for the next 10 days at 6-hour intervals and a spatial resolution 0.25 degree, as shown in the table show. This repository presents the inference code and pre-trained model of FengYuan-Weather, a deep learning-based weather forecasting model.
-![](imgs/var_list_en.png)
+
     
 ## Data Format
 
