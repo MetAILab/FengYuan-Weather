@@ -1,10 +1,9 @@
-
-
+[English](README.md) [中文](README_zh.md)
+    
 # FengYuan-Weather
-
-This repository presents the inference code and pre-trained model of FengYuan-Weather, a deep learning-based weather forecasting model.
-
-
+FengYuan-Weather model utilizes data from past 12-hour as input to forecast surface and upper-air meteorological variables for the next 10 days at 6-hour intervals and a spatial resolution 0.25 degree, as shown in the table show. This repository presents the inference code and pre-trained model of FengYuan-Weather, a deep learning-based weather forecasting model.
+![](imgs/var_list_en.png)
+    
 ## Data Format
 
 The model takes two consecutive six-hour data frames as input. input1.npy represents the atmospheric data at the first time moment, while input2.npy represents the atmospheric data six hours later. For example, if input1.npy represents the atmospheric state at 00:00 on January 1, 2022, then input2.npy represents the atmospheric state at 06:00 on the same day. The first predicted data corresponds to the atmospheric state at 12:00 on January 1, 2022, and the second predicted data corresponds to the atmospheric state at 18:00 on January 1, 2022.
@@ -66,3 +65,4 @@ For example, downloading the ECMWF open data from 00:00 on December 21, 2025, to
 - onnxruntime
 - xarray
 - netcdf4 or h5netcdf
+
