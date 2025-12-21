@@ -53,7 +53,7 @@ python inference.py \
     --filename-suffix "_forecast"
 ```
     
-Additionally, you can access the [run_fengyuan_v1.0.ipynb](https://github.com/MetAILab/FengYuan-Weather/run_fengyuan_v1.0.ipynb) to learn how to download realtime ECMWF open data and load the FengYuan-Weather model weights to generate weather forecasts for the next 10 days.
+Additionally, you can access the [run_fengyuan_v1.0.ipynb](https://github.com/MetAILab/FengYuan-Weather/blob/main/run_fengyuan_v1.0.ipynb) to learn how to download realtime ECMWF open data and load the FengYuan-Weather model weights to generate weather forecasts for the next 10 days.
     
 
 ## Requriments
