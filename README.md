@@ -55,7 +55,7 @@ python inference.py \
     
 Additionally, you can access the [run_fengyuan_v1.0.ipynb](https://github.com/MetAILab/FengYuan-Weather/blob/main/run_fengyuan_v1.0.ipynb) to learn how to download realtime ECMWF open data and load the FengYuan-Weather model weights to generate weather forecasts for the next 10 days.
     
-For example, downloading ECMWF open data from 00:00 on December 21, 2025, to forecast the weather for the next 10 days. The following figure shows the 2m temperature for the upcoming 10 days.
+For example, downloading the ECMWF open data from 00:00 on December 21, 2025, to forecast the weather for the next 10 days. The following figure shows the 2m temperature prediction for the upcoming 10 days.
 
 ![2m temperature](https://github.com/MetAILab/FengYuan-Weather/blob/main/imgs/20251221.gif)
 
