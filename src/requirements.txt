@@ -1,0 +1,13 @@
+einops
+fire
+lightning
+lightning-utilities
+numpy
+omegaconf
+packaging
+pandas
+pytest
+PyYAML
+tensorboard
+timm
+torch

@@ -1,0 +1,416 @@
+mode: 'train'
+experiment: 'fengyuan_finetune'
+model_name: 'fengyuan'
+gpus: [-1]
+strategy: 'ddp'
+lossfx: 'combineloss'
+finetune: True
+inference:
+  plot: False
+
+project:
+  name: 'FengYuanv1'
+  result_path: 'results'
+
+log:
+  log_format: '[%(asctime)s] - [%(process)s] - [%(levelname)s %(filename)s:%(lineno)d] - %(message)s'
+  date_format: '%m/%d/%Y %H:%M:%S'
+
+data:
+  data_type: 'numpy'
+  pre_normalized: False
+  swap_ch_time: False
+  variables_names: 'cons/variables_names.npy'
+  data_dir: '/gpu/era5_npy/'
+  valid_dir: '/gpu/era5_npy/'
+  test_dir: '/gpu/era5_npy/'
+  save_dir: '/gpu/savedir'
+  train_file: 'index/train_index_41yr.csv'
+  valid_file: 'index/valid_index.csv'
+  test_file: 'index/test_index.csv'
+  mean_file: 'cons/mean-1979-2019.npy'
+  std_file: 'cons/std-1979-2019.npy'
+
+model:
+  img_size: [2, 721, 1440]
+  patch_size: [2, 4, 4]
+  input_length: 2
+  target_length: 1
+  in_channels: 70
+  out_channels: 70
+  embed_dim: 1536
+  num_groups: 8
+  num_heads: [6, 12, 24, 48]
+  num_layers: 4
+  depths: [4, 8, 24, 12]
+  window_size: [6, 12]
+  drop_rate: 0.1
+  drop_path_rate: 0.1
+  mlp_ratio: 4
+  qkv_bias: True
+  attn_drop: 0
+  use_checkpoint: True
+  pretrained_window_size: 0
+  attn_type: 'basic'
+  kernel_size: 7
+  dilations: null
+  qk_scale: null
+  layer_scale: null
+  norm_layer: 'LayerNorm'
+  use_downsample: False
+  lora_steps: 40
+  lora_mode: "single"
+  use_lora: False
+  depth: 48
+  cube_in_channels: 70
+  cube_embed_dim: 1536
+  cube_out_channels: 70
+
+train:
+  var_idx: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+           39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69]
+  var_names: ['t50','u50','v50','z50','q50','t100','u100','v100','z100','q100','t150','u150','v150','z150','q150','t200','u200','v200','z200','q200','t250','u250','v250','z250','q250',
+              't300','u300','v300','z300','q300','t400','u400','v400','z400','q400','t500','u500','v500','z500','q500','t600','u600','v600','z600','q600','t700','u700','v700','z700','q700',
+              't850','u850','v850','z850','q850','t925','u925','v925','z925','q925','t1000','u1000','v1000','z1000','q1000','t2m','u10','v10','msl','tp']
+  target_names: ['t50','u50','v50','z50','q50','t100','u100','v100','z100','q100','t150','u150','v150','z150','q150','t200','u200','v200','z200','q200','t250','u250','v250','z250','q250',
+              't300','u300','v300','z300','q300','t400','u400','v400','z400','q400','t500','u500','v500','z500','q500','t600','u600','v600','z600','q600','t700','u700','v700','z700','q700',
+              't850','u850','v850','z850','q850','t925','u925','v925','z925','q925','t1000','u1000','v1000','z1000','q1000','t2m','u10','v10','msl','tp']
+  num_step: 12
+  start_idx: 0
+  end_idx: 12
+  iterative_step: 1
+  initial_length : 2
+  forecast_length : 12
+  time_interval : 6
+  time_condition: False 
+  use_index_file: True
+  norm_flag: True
+  seed: 666
+  lr: 0.0000003
+  batch_size: 1
+  num_workers: 2
+  val_batch_size: 1
+  val_num_workers: 2
+  pin_memory: True
+  train_steps: 500
+  valid_steps: 100
+  clip: null 
+  reshape: False
+  iterative_type: 'one2one'
+  ckpt_path: null
+  
+  trainer:
+    max_epochs: -1
+    max_steps: 12000
+    precision: 16
+    profiler: null
+
+  loss:
+    combineloss:
+      t50:
+        idx: 0
+        loss: 'mae'
+        weight: 0.05
+      u50: 
+        idx: 1
+        loss: 'mae'
+        weight: 0.05
+      v50:
+        idx: 2
+        loss: 'mae'
+        weight: 0.05
+      z50:
+        idx: 3
+        loss: 'mae'
+        weight: 0.05
+      q50:
+        idx: 4
+        loss: 'mae'
+        weight: 0.05
+      t100:
+        idx: 5
+        loss: 'mae'
+        weight: 0.1
+      u100: 
+        idx: 6
+        loss: 'mae'
+        weight: 0.1
+      v100:
+        idx: 7
+        loss: 'mae'
+        weight: 0.1
+      z100:
+        idx: 8
+        loss: 'mae'
+        weight: 0.1
+      q100:
+        idx: 9
+        loss: 'mae'
+        weight: 0.1
+      t150:
+        idx: 10
+        loss: 'mae'
+        weight: 0.15
+      u150: 
+        idx: 11
+        loss: 'mae'
+        weight: 0.15
+      v150:
+        idx: 12
+        loss: 'mae'
+        weight: 0.15
+      z150:
+        idx: 13
+        loss: 'mae'
+        weight: 0.15
+      q150:
+        idx: 14
+        loss: 'mae'
+        weight: 0.15
+      t200:
+        idx: 15
+        loss: 'mae'
+        weight: 0.2
+      u200: 
+        idx: 16
+        loss: 'mae'
+        weight: 0.2
+      v200:
+        idx: 17
+        loss: 'mae'
+        weight: 0.2
+      z200:
+        idx: 18
+        loss: 'mae'
+        weight: 0.2
+      q200:
+        idx: 19
+        loss: 'mae'
+        weight: 0.2
+      t250:
+        idx: 20
+        loss: 'mae'
+        weight: 0.25
+      u250: 
+        idx: 21
+        loss: 'mae'
+        weight: 0.25
+      v250:
+        idx: 22
+        loss: 'mae'
+        weight: 0.25
+      z250:
+        idx: 23
+        loss: 'mae'
+        weight: 0.25
+      q250:
+        idx: 24
+        loss: 'mae'
+        weight: 0.25
+      t300:
+        idx: 25
+        loss: 'mae'
+        weight: 0.3
+      u300: 
+        idx: 26
+        loss: 'mae'
+        weight: 0.3
+      v300:
+        idx: 27
+        loss: 'mae'
+        weight: 0.3
+      z300:
+        idx: 28
+        loss: 'mae'
+        weight: 0.3
+      q300:
+        idx: 29
+        loss: 'mae'
+        weight: 0.3
+      t400:
+        idx: 30
+        loss: 'mae'
+        weight: 0.4
+      u400: 
+        idx: 31
+        loss: 'mae'
+        weight: 0.4
+      v400:
+        idx: 32
+        loss: 'mae'
+        weight: 0.4
+      z400:
+        idx: 33
+        loss: 'mae'
+        weight: 0.4
+      q400:
+        idx: 34
+        loss: 'mae'
+        weight: 0.4
+      t500:
+        idx: 35
+        loss: 'mae'
+        weight: 0.5
+      u500: 
+        idx: 36
+        loss: 'mae'
+        weight: 0.5
+      v500:
+        idx: 37
+        loss: 'mae'
+        weight: 0.5
+      z500:
+        idx: 38
+        loss: 'mae'
+        weight: 0.5
+      q500:
+        idx: 39
+        loss: 'mae'
+        weight: 0.5
+      t600:
+        idx: 40
+        loss: 'mae'
+        weight: 0.6
+      u600: 
+        idx: 41
+        loss: 'mae'
+        weight: 0.6
+      v600:
+        idx: 42
+        loss: 'mae'
+        weight: 0.6
+      z600:
+        idx: 43
+        loss: 'mae'
+        weight: 0.6
+      q600:
+        idx: 44
+        loss: 'mae'
+        weight: 0.6
+      t700:
+        idx: 45
+        loss: 'mae'
+        weight: 0.7
+      u700: 
+        idx: 46
+        loss: 'mae'
+        weight: 0.7
+      v700:
+        idx: 47
+        loss: 'mae'
+        weight: 0.7
+      z700:
+        idx: 48
+        loss: 'mae'
+        weight: 0.7
+      q700:
+        idx: 49
+        loss: 'mae'
+        weight: 0.7
+      t850:
+        idx: 50
+        loss: 'mae'
+        weight: 0.8
+      u850: 
+        idx: 51
+        loss: 'mae'
+        weight: 0.8
+      v850:
+        idx: 52
+        loss: 'mae'
+        weight: 0.8
+      z850:
+        idx: 53
+        loss: 'mae'
+        weight: 0.8
+      q850:
+        idx: 54
+        loss: 'mae'
+        weight: 0.8
+      t925:
+        idx: 55
+        loss: 'mae'
+        weight: 0.9
+      u925: 
+        idx: 56
+        loss: 'mae'
+        weight: 0.9
+      v925:
+        idx: 57
+        loss: 'mae'
+        weight: 0.9
+      z925:
+        idx: 58
+        loss: 'mae'
+        weight: 0.9
+      q925:
+        idx: 59
+        loss: 'mae'
+        weight: 0.9
+      t1000:
+        idx: 60
+        loss: 'mae'
+        weight: 1
+      u1000: 
+        idx: 61
+        loss: 'mae'
+        weight: 1
+      v1000:
+        idx: 62
+        loss: 'mae'
+        weight: 1
+      z1000:
+        idx: 63
+        loss: 'mae'
+        weight: 1
+      q1000:
+        idx: 64
+        loss: 'mae'
+        weight: 1
+      t2m:
+        idx: 65
+        loss: 'mae'
+        weight: 1
+      u10: 
+        idx: 66
+        loss: 'mae'
+        weight: 1
+      v10:
+        idx: 67
+        loss: 'mae'
+        weight: 1
+      msl:
+        idx: 68
+        loss: 'mae'
+        weight: 1
+      tp:
+        idx: 69
+        loss: 'mae'
+        weight: 1
+
+  optim: 'adamw' 
+  adamw:
+    betas: [0.9, 0.95]
+    weight_decay: 0.01
+
+  scheduler: 'reducelr'
+  scheduler_params:
+    interval: 'step'
+  reducelr:
+    mode: 'min'
+    factor: 0.999
+    patience: 10000000
+    monitor: 'epoch_valid_loss'
+    verbose: True
+  linearhalfcosine:
+    warmup_steps: 1000
+    total_steps: 260000
+
+  modelcheckpoint:
+    monitor: 'epoch_valid_loss'
+    every_n_train_steps: 1000
+    mode: 'min'
+    save_top_k: 10
+    save_last: True
+    verbose: True
+    save_weights_only: False
