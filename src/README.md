@@ -4,7 +4,7 @@
 
 本仓库提供风源（FengYuan）气象大模型的训练代码，面向中期天气预报任务，基于 PyTorch 和 Lightning 实现。当前开源版本包含 NumPy 格式 ERA5 数据读取、FengYuan 主干模型、训练/验证/测试/预测入口、组合损失函数、优化器配置和最小 smoke tests，便于研究人员在本地数据上复现、训练和扩展模型。
 
-风源推断代码见 [MetAILab/FengYuan-Weather](https://github.com/MetAILab/FengYuan-Weather)。风源论文已发布在 [Journal of Meteorological Research (JMR)](http://jmr.cmsjournal.net/) 网站，论文链接[FengYuan: An End-to-End Global Weather Forecasting Model Driven by Multi-Source Observational Data](http://jmr.cmsjournal.net/article/doi/10.1007/s13351-026-6042-4)。
+风源论文已发布在 [Journal of Meteorological Research (JMR)](http://jmr.cmsjournal.net/) 网站，论文链接[FengYuan: An End-to-End Global Weather Forecasting Model Driven by Multi-Source Observational Data](http://jmr.cmsjournal.net/article/doi/10.1007/s13351-026-6042-4)。
 
 ## 项目定位
 

@@ -4,7 +4,7 @@
 
 This repository provides the training code for FengYuan, a meteorological foundation model for medium-range weather forecasting. It is implemented with PyTorch and Lightning. The current open-source version includes a NumPy-based ERA5 data pipeline, the FengYuan backbone, training/validation/test/prediction entry points, combined loss configuration, optimizer setup, and minimal smoke tests.
 
-The FengYuan inference code is available in a separate open-source repository: [MetAILab/FengYuan-Weather](https://github.com/MetAILab/FengYuan-Weather). The FengYuan paper has been published on the [Journal of Meteorological Research (JMR)](http://jmr.cmsjournal.net/) website: [FengYuan: An End-to-End Global Weather Forecasting Model Driven by Multi-Source Observational Data](http://jmr.cmsjournal.net/article/doi/10.1007/s13351-026-6042-4).
+The FengYuan paper has been published on the [Journal of Meteorological Research (JMR)](http://jmr.cmsjournal.net/) website: [FengYuan: An End-to-End Global Weather Forecasting Model Driven by Multi-Source Observational Data](http://jmr.cmsjournal.net/article/doi/10.1007/s13351-026-6042-4).
 
 ## Scope
 
